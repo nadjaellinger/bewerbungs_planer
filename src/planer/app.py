@@ -1,8 +1,8 @@
 import logging
 from dotenv import load_dotenv
 import os
+import uvicorn
 
-from planer.services.view import View
 from planer.models.server_settings import ServerSettings
 
 class App:
@@ -11,7 +11,12 @@ class App:
         self.server_settings = self.get_server_settings()
 
     def run(self):
-        View(self.logger).run(self.server_settings)
+        uvicorn.run(
+            "planer.api.main:app",
+            host=self.server_settings.server,
+            port=self.server_settings.port,
+            reload=True,
+        )
         
     def get_logger(self) -> logging.Logger:
         logger = logging.getLogger("planer")
