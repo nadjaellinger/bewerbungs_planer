@@ -1,14 +1,19 @@
 [tool.poetry]
-name = "bewerbungs_planer"
+name = "planer"
 version = "0.1.0"
 description = ""
 authors = ["Nadja Ellinger <ellingernadja@gmail.com>"]
 
+packages = [
+    { include = "planer", from = "src" }
+]
+
 [tool.poetry.dependencies]
 python = "^3.10"
 pydantic = "^2.0"
+nicegui = "^1.0"
 
-[tool.poetry.dev-dependencies]
+[tool.poetry.group.dev.dependencies]
 pytest = "^7.0"
 
 [build-system]
